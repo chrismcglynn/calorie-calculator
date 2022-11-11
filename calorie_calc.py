@@ -4,22 +4,35 @@ def user_info():
     weight = int(input('What is your weight: '))
     height = int(input('What is your height in inches: '))
 
-    if gender == 'male':
-        c1 = 66
-        hm = 6.2 * height
-        wm = 12.7 * weight
-        am = 6.76 * age
-    elif gender == 'female':
-        c1 = 655.1
-        hm = 4.35 * height
-        wm = 4.7 * weight
-        am = 4.7 * age
+    try:
+        if gender == 'male' or gender.startswith('m'):
+            c1 = 66
+            hm = 6.2 * height
+            wm = 12.7 * weight
+            am = 6.76 * age
+        elif gender == 'female' or gender.startswith('f'):
+            c1 = 655.1
+            hm = 4.35 * height
+            wm = 4.7 * weight
+            am = 4.7 * age
+    except:
+        print('please put in valid inputs')
+        if gender == 'male' or gender.startswith('m'):
+            c1 = 66
+            hm = 6.2 * height
+            wm = 12.7 * weight
+            am = 6.76 * age
+        elif gender == 'female' or gender.startswith('f'):
+            c1 = 655.1
+            hm = 4.35 * height
+            wm = 4.7 * weight
+            am = 4.7 * age16
 
     #BMR = 665 + (9.6 X 69) + (1.8 x 178) – (4.7 x 27)
     bmr_result = c1 + hm + wm - am
     return(int(bmr_result))
 
-def calculate_activity(bmr_result): 
+def calculate_activity(bmr_result):
     activity_level = input('What is your activity level (none, light, moderate, heavy, or extreme): ')
 
     if activity_level == 'none':
@@ -51,5 +64,7 @@ def gain_or_lose(activity_level):
 
     print('in order to ', goals, 'weight, your daily caloric goals should be', int(calories), '!')
 
-
-gain_or_lose(calculate_activity(user_info()))
+try:
+    gain_or_lose(calculate_activity(user_info()))
+except:
+    print('Please put in valid inputs')
